@@ -31,3 +31,36 @@ console.log(parseFloat(3.1415927));
 console.log(parseFloat('3.1415927'));
 console.log(parseFloat(3.56));
 console.log(parseFloat('blah'));
+
+var moneyInPocket = 20;
+
+if (moneyInPocket > 10) {
+  console.log('Another drink please!');
+} else if (moneyInPocket > 5) {
+  console.log('Make mine a half then!');
+} else {
+  console.log('Time to go home!');
+}
+
+var greeting = '';
+var countryOfOrigin = 'France';
+
+switch(countryOfOrigin) {
+  case 'France':
+    greeting = 'Bonjour';
+    break;
+  case 'Spain':
+    greeting = 'Hola!';
+    break;
+  case 'Indonesia':
+    greeting = 'Selamat sore';
+    break;
+  case 'Kenya':
+    greeting = 'Jambo';
+    break;
+  default:
+    greeting = 'Well hello there';
+    break;
+}
+
+console.log(greeting);
