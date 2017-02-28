@@ -1,33 +1,32 @@
 console.log('in main.js');
 
 var person1 = {
- firstName: 'Bob',
- lastName: 'le Plant',
- email: 'bob@spartaglobal.co',
- age: 12.5
+  firstName: 'Bob',
+  lastName: 'le Plant',
+  email: 'bob@spartaglobal.co',
+  age: 12.5
 };
 
 var person2 = {
- firstName: 'Aretha',
- lastName: 'Franklin',
- email: 'ms.legend@example.com',
- age: 29
+  firstName: 'Aretha',
+  lastName: 'Franklin',
+  email: 'ms.legend@example.com',
+  age: 29
 };
 
 var person3 = {
- fristName: 'Joe',
- email: 4,
- hobbies: ['boxing', 'hitting']
+  fristName: 'Joe',
+  email: 4,
+  hobbies: ['boxing', 'hitting']
 };
 
 // adding these objects in an array
 var people = [ person1, person2, person3 ];
-var test = 1;
 
 // i (index of array is less than the number of elements within the array, increment through)
-for (i =0; i < people.length; i++){
+for(var i = 0; i < people.length; i++){
 
- console.log(people[i].firstName, people[i].age);
+  console.log(people[i].firstName, people[i].age);
  //use .(dot) notation to access properties from other objects
 }
 
@@ -70,7 +69,7 @@ function isOldEnough(age){
 if (isOldEnough(harald.age)) {
   console.log('Come in');
 } else {
-  console.log('Come back when you are older')
+  console.log('Come back when you are older');
 }
 
 for (i = 0; i < people.length; i++) {
@@ -88,7 +87,7 @@ function Circle(radius) {
   // one way to write an instance method
   this.circumference = function() {
     return 2 * this.radius * Math.PI;
-  }
+  };
 }
 
 // Another way to write an instance method:
@@ -96,7 +95,7 @@ function Circle(radius) {
 
 Circle.prototype.area = function () {
   return Math.PI * this.radius * this.radius;
-}
+};
 
 var coin = new Circle(1.2);
 var plate = new Circle(7);
