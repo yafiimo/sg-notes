@@ -1,7 +1,5 @@
 console.log('in main.js');
 
-
-
 var person1 = {
  firstName: 'Bob',
  lastName: 'le Plant',
@@ -43,18 +41,27 @@ if(myObject === {}) {
 
 console.log('---Functions:');
 
+var capitalCity = 'London';
+
 function createPerson(firstName, lastName, email, age) {
   var newPerson = {
     firstName: firstName,
     lastName: lastName,
     email: email,
-    age: age
+    age: age,
+    capitalCity: capitalCity,
+    fullName: function(){
+      return firstName + ' ' + lastName + ' ' + capitalCity;
+    }
   };
   return newPerson;
 }
 
-var harald = createPerson('Harald', 'Kumar', 'h.kumar@example.com', 15)
-console.log('newPerson', harald)
+var harald = createPerson('Harald', 'Kumar', 'h.kumar@example.com', 15);
+console.log('new person\'s full name:', harald.fullName());
+var tola = createPerson('Tola', 'Olaoke', 'tolaoke@spartaglobal.co', 21);
+var asma = createPerson('Asma', 'Chaima', 'achaima@spartaglobal.co', 22);
+people = [harald, tola, asma];
 
 function isOldEnough(age){
   return (age >= 18);
@@ -65,3 +72,11 @@ if (isOldEnough(harald.age)) {
 } else {
   console.log('Come back when you are older')
 }
+
+for (i = 0; i < people.length; i++) {
+  console.log(people[i].fullName(), (isOldEnough(people[i].age)) ? 'is old enough.' : 'is not old enough.');
+}
+
+people = [];
+people.push(harald, tola, asma);
+console.log(people[2]);
