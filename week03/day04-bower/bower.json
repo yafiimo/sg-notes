@@ -1,0 +1,13 @@
+{
+  "name": "day04-bower",
+  "homepage": "https://github.com/yafiimo/sg-notes",
+  "authors": [
+    "Mohammed Yafii <myafii@spartaglobal.co>"
+  ],
+  "description": "seeing how bower works",
+  "main": "",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
