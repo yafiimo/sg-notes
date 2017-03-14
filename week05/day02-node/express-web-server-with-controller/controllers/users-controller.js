@@ -1,4 +1,3 @@
-// controls the 7 restful routes
 var users = [
   {
     id: '994',
@@ -28,16 +27,12 @@ function getNextUserId() {
   return currentUserId.toString();
 }
 
-// Index
+// Action: index
 function indexUsers(req, res) {
-  var html = '<h1>List of users</h1>';
-
-  html += '<ul>';
-  for (var i = 0; i < users.length; i++) {
-    html += '<li><a href="/users/' + users[i].id + '">' + users[i].firstName + ' ' + users[i].lastName + ' (' + users[i].email + ')' + '</a></li>';
-  }
-  html += '</ul>';
-  res.status(200).send(html);
+  res.render('users/index', {
+    title: 'User list',
+    users: users
+  });
 }
 
 // Action: new
@@ -47,18 +42,15 @@ function newUser(req, res) {
 
 // Action: create
 function createUser(req, res) {
-  var userId = getNextUserId();
   var newUser = {
-    id: userId,
+    id: getNextUserId(),
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email
   };
-  users.push(newUser);
 
-  console.log('req.body:', req.body);
-  console.log(users);
-  res.status(200).send('<h1>Action: create new user with id ' + newUser.id + '</h1>');
+  users.push(newUser);
+  res.status(200).send('<h1>Action: created new user with id ' + newUser.id + '</h1>');
 }
 
 // Action: edit
@@ -68,34 +60,27 @@ function editUser(req, res) {
 
 // Action: update
 function updateUser(req, res) {
-  // get the user id from params
-  // retrieve the index of the users array
-  // if user does not exist
-  //  set status to 404
-  //  set html with error message
-  // else
-  //  set status to 200
-  //  update ec
-  var html = '<h1>Update user</h1>';
   var userId = req.params.id;
-  var userIndex;
+  var userIndex = findUserIndexById(userId);
   var user;
-  userIndex = findUserIndexById(userId);
+  var status;
+  var html = '<h1>Updating user with id ' + userId + '</h1>';
 
-  if(userIndex !== 1){
+  if (userIndex !== -1) {
+    // found the user
     user = users[userIndex];
-    user.id = userId;
     user.firstName = req.body.firstName;
     user.lastName = req.body.lastName;
     user.email = req.body.email;
-    html += '<p>User updated<p>';
-    console.log(users);
-    res.status(200).send(html);
+    html += '<p>User updated</p>';
+    status = 200;
   } else {
-    console.log(users);
+    // user with :id does not exist
     html += '<em>Could not find user with id ' + userId + '</em>';
-    res.status(404).send(html);
+    status = 404;
   }
+
+  res.status(status).send(html);
 }
 
 // Action: show
@@ -118,10 +103,11 @@ function showUser(req, res) {
     status = 404;
     html += '<em>User not found with id ' + userId + '</em>';
   }
+
   res.status(status).send(html);
 }
 
-// Action: delete
+// Action: destroy
 function destroyUser(req, res) {
   var userId = req.params.id;
   var userIndex;
