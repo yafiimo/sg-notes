@@ -11,7 +11,7 @@ chai.use(chaiHttp);
 
 // We are looking for HTML that looks like this:
 // <a href="/users/58cbb8e616f8b0228f71b315">
-// We can then extract the user ID from the `href` attribute using a regex.
+// We can the extract the user ID from the `href` attribute using a regex.
 function getFirstUserIdFromUserListHTML(html) {
   var regEx = /\/users\/[0-9a-f]+/;
   var result = regEx.exec(html)[0];
@@ -28,8 +28,6 @@ describe('Users', function () {
   beforeEach(function () {
     request = chai.request(app);
   });
-
-  // beforeEach sets up, before running the .it methods
 
   describe('GET', function () {
     it('should return error for invalid URL GET', function (done) {
@@ -64,14 +62,14 @@ describe('Users', function () {
     });
     it('should return correct result for existing user', function (done) {
       request
-        .get('/users/')
+        .get('/users')
         .end(function (err, res) {
           var userId = getFirstUserIdFromUserListHTML(res.text);
 
           request
             .put('/users/' + userId)
-            .set('content-type', 'application/x-www-form-urlencoded')
-            .send({firstName: 'testFirstName', lastName: 'testLastName', email: 'testEmail'})
+            .set('Content-Type', 'application/x-www-form-urlencoded')
+            .send({ firstName: 'testFirstName', lastName: 'testLastName', email: 'testemail@example.com' })
             .end(function (err, res) {
               res.should.have.status(200);
               res.text.should.match(/testFirstName/);
@@ -82,14 +80,15 @@ describe('Users', function () {
     });
   });
 
-  describe('POST', function(){
-    it('should return error when firstName is blank', function(done) {
+  describe('POST', function () {
+    it('should return error when firstName is blank', function (done) {
       request
         .post('/users')
         .set('Content-Type', 'application/x-www-form-urlencoded')
-        .send({firstName: '', email: 'testpostlastname@example.'})
-        .end(function(err, res) {
+        .send({ firstName: '', email: 'testpostlastname@example.com' })
+        .end(function (err, res) {
           var jsonResponse = JSON.parse(res.text);
+
           res.should.have.status(400);
           expect(jsonResponse).to.be.an('array');
           expect(jsonResponse.length).to.equal(1);
@@ -97,39 +96,37 @@ describe('Users', function () {
           done();
         });
     });
-    it('should return error when no email is provided', function(done) {
+    it('should return error email is blank', function (done) {
       request
         .post('/users')
         .set('Content-Type', 'application/x-www-form-urlencoded')
-        .send({firstName: 'testPostFirstName', email: ''})
-        .end(function(err, res) {
-          res.should.have.status(400);
+        .send({ firstName: 'testPostFirstName', email: '' })
+        .end(function (err, res) {
           var jsonResponse = JSON.parse(res.text);
+
+          res.should.have.status(400);
           expect(jsonResponse).to.be.an('array');
           expect(jsonResponse.length).to.equal(1);
           expect(jsonResponse[0].path).to.equal('email');
           done();
         });
     });
-
-    it.only('should create new user when input data is valid', function(done) {
+    it('should create new user when input data is valid', function (done) {
       var testFirstName = generateUniqueFirstName();
 
       request
-      .post('/users')
-      .set('Content-Type', 'application/x-www-form-urlencoded')
-      .send({firstName: testFirstName, email: 'testpost@example.com'})
-      .end(function(err, res) {
-        var firstNameRegExp = new RegExp(testFirstName);
-        res.should.have.status(200);
-        console.log('response:', res);
-        res.text.should.match(firstNameRegExp);
-        done();
-      });
+        .post('/users')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send({ firstName: testFirstName, email: 'testpost@example.com' })
+        .end(function (err, res) {
+          var firstNameRegExp = new RegExp(testFirstName);
+
+          res.should.have.status(200);
+          res.text.should.match(firstNameRegExp);
+          done();
+        });
     });
-
   });
-
 
   describe('DELETE', function () {
     it('should return error for non-existent user id', function (done) {
