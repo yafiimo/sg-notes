@@ -25,6 +25,8 @@ describe('Users', function () {
     request = chai.request(app);
   });
 
+  // beforeEach sets up, before running the .it methods
+
   describe('GET', function () {
     it('should return error for invalid URL GET', function (done) {
       request
@@ -63,23 +65,31 @@ describe('Users', function () {
           var userId = getFirstUserIdFromUserListHTML(res.text);
           var testFirstName = 'testFirstName';
           var testLastName = 'testLastName';
-          var testEmail = 'testEmail';
+          var testEmail = 'testemail@example.com';
           var regExpTestFirstName = new RegExp(testFirstName);
           var regExpTestLastName = new RegExp(testLastName);
 
           request
             .put('/users/' + userId)
-            .set('content-type', 'application/x-www-form-urlencoded')
+            .set('Content-Type', 'application/x-www-form-urlencoded')
             .send({'firstName': testFirstName, 'lastName': testLastName, 'email': testEmail})
             .end(function (err, res) {
               res.should.have.status(200);
               res.text.should.match(regExpTestFirstName);
               res.text.should.match(regExpTestLastName);
+              console.log(res.text[0]);
               done();
             });
         });
     });
   });
+
+  describe('POST', function(){
+    it('', function(done) {
+
+    });
+  });
+
 
   describe('DELETE', function () {
     it('should return error for non-existent user id', function (done) {
