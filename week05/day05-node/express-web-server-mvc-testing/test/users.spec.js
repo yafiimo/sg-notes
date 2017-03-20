@@ -11,7 +11,7 @@ chai.use(chaiHttp);
 
 // We are looking for HTML that looks like this:
 // <a href="/users/58cbb8e616f8b0228f71b315">
-// We can the extract the user ID from the `href` attribute using a regex.
+// We can then extract the user ID from the `href` attribute using a regex.
 function getFirstUserIdFromUserListHTML(html) {
   var regEx = /\/users\/[0-9a-f]+/;
   var result = regEx.exec(html)[0];
@@ -43,6 +43,40 @@ describe('Users', function () {
           res.should.be.html;
           res.text.should.match(/User list/);
           done();
+        });
+    });
+  });
+
+  describe('PUT', function () {
+    it('should return error for non-existent user id', function (done) {
+      request
+        .put('/users/non-existent-user-id')
+        .end(function (err, res) {
+          res.should.have.status(404);
+          done();
+        });
+    });
+    it('should return correct result for existing user', function (done) {
+      request
+        .get('/users/')
+        .end(function (err, res) {
+          var userId = getFirstUserIdFromUserListHTML(res.text);
+          var testFirstName = 'testFirstName';
+          var testLastName = 'testLastName';
+          var testEmail = 'testEmail';
+          var regExpTestFirstName = new RegExp(testFirstName);
+          var regExpTestLastName = new RegExp(testLastName);
+
+          request
+            .put('/users/' + userId)
+            .set('content-type', 'application/x-www-form-urlencoded')
+            .send({'firstName': testFirstName, 'lastName': testLastName, 'email': testEmail})
+            .end(function (err, res) {
+              res.should.have.status(200);
+              res.text.should.match(regExpTestFirstName);
+              res.text.should.match(regExpTestLastName);
+              done();
+            });
         });
     });
   });
