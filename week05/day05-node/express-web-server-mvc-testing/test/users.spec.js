@@ -63,21 +63,15 @@ describe('Users', function () {
         .get('/users/')
         .end(function (err, res) {
           var userId = getFirstUserIdFromUserListHTML(res.text);
-          var testFirstName = 'testFirstName';
-          var testLastName = 'testLastName';
-          var testEmail = 'testemail@example.com';
-          var regExpTestFirstName = new RegExp(testFirstName);
-          var regExpTestLastName = new RegExp(testLastName);
 
           request
             .put('/users/' + userId)
-            .set('Content-Type', 'application/x-www-form-urlencoded')
-            .send({'firstName': testFirstName, 'lastName': testLastName, 'email': testEmail})
+            .set('content-type', 'application/x-www-form-urlencoded')
+            .send({firstName: 'testFirstName', lastName: 'testLastName', email: 'testEmail'})
             .end(function (err, res) {
               res.should.have.status(200);
-              res.text.should.match(regExpTestFirstName);
-              res.text.should.match(regExpTestLastName);
-              console.log(res.text[0]);
+              res.text.should.match(/testFirstName/);
+              res.text.should.match(/testLastName/);
               done();
             });
         });
@@ -85,8 +79,33 @@ describe('Users', function () {
   });
 
   describe('POST', function(){
-    it('', function(done) {
-
+    it('should return error when firstName is blank', function(done) {
+      request
+        .post('/users')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send({firstName: '', email: 'testpostlastname@example.'})
+        .end(function(err, res) {
+          var jsonResponse = JSON.parse(res.text);
+          res.should.have.status(400);
+          expect(jsonResponse).to.be.an('array');
+          expect(jsonResponse.length).to.equal(1);
+          expect(jsonResponse[0].path).to.equal('firstName');
+          done();
+        });
+    });
+    it('should return error when no email is provided', function(done) {
+      request
+        .post('/users')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send({firstName: 'testPostFirstName', email: ''})
+        .end(function(err, res) {
+          res.should.have.status(400);
+          var jsonResponse = JSON.parse(res.text);
+          expect(jsonResponse).to.be.an('array');
+          expect(jsonResponse.length).to.equal(1);
+          expect(jsonResponse[0].path).to.equal('email');
+          done();
+        });
     });
   });
 
