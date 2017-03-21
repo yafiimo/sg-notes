@@ -8,14 +8,18 @@ var session = require('express-session');
 var app = express();
 var port = 3000;
 
+
 mongoose.connect('mongodb://localhost/sg-mvc');
 
 app.set('view engine', 'ejs');
 app.use(function (req, res, next) {
+  req.now = new Date();
   // simple middleware logging
   console.log(req.method, req.path);
   next();
 });
+
+app.use(express.static('public'));
 app.use(session({
   secret: 'secret squirrel',
   resave: false,

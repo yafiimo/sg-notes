@@ -11,7 +11,7 @@ function indexUsers(req, res) {
       return;
     }
     res.render('users/index', {
-      title: 'User list',
+      title: 'User list at ' + req.now.toString(),
       users: users
     });
   });
