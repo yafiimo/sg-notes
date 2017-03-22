@@ -20,13 +20,18 @@ router.route('/users/:id')
   .put(usersController.update)
   .get(usersController.show)
   .delete(usersController.destroy);
+// ----------------------------------------------------------------
 
-router.route('/books/:id')
-  .delete(booksController.destroy);
+router.route('/books')
+.post(booksController.create);
 
+
+router.get('/books/new', booksController.new);
 router.get('/books/:id/edit', booksController.edit);
 
 router.route('/books/:id')
-  .put(booksController.update);
+  .put(booksController.update)
+  .delete(booksController.destroy);
+
 
 module.exports = router;
