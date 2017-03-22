@@ -58,6 +58,7 @@ function editBook(req, res) {
 // Action: update
 function updateBook(req, res) {
   var bookId = req.params.id;
+  // var userId = req.body.userId;
   var updatedBook = {
     title: req.body.title,
     author: req.body.author
