@@ -3,7 +3,7 @@
 var chai = require('chai');
 var chaiHttp = require('chai-http');
 var app = require('../index');
-var expect = chai.expect;
+// var expect = chai.expect;
 var request;
 
 chai.should();
@@ -55,14 +55,15 @@ describe('Books', function () {
             .get('/users/' + userId)
             .end(function (err, res) {
               var bookId = getFirstBookIdFromUserPageHTML(res.text);
-              console.log('bookId:', bookId);
-              console.log('res.text:', res.text);
 
-              // res.should.have.status(200);
               request
                 .delete('/books/' + bookId)
+                .send({ userId: userId})
                 .end(function (err, res) {
+                  var bookIdRegExp = new RegExp(bookId);
+
                   res.should.have.status(200);
+                  res.text.should.not.match(bookIdRegExp);
                   done();
                 });
             });
