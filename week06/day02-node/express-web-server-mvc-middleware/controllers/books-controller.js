@@ -17,29 +17,29 @@ function createBook(req, res) {
   newBook.user = userId;
   console.log('newBook:', newBook);
   console.log('userId:', userId);
-  newBook.save(function(err, bookSaved){
+  newBook.save(function(err, savedBook){
     if (err) {
-      console.log('could not create book: err:', err);
+      console.log('could not create new book: err:', err);
       process.exit(1);
     }
-    console.log('book saved:', bookSaved);
+    console.log('book saved:', savedBook);
 
-    User.find({ _id: userId }, function(err, user) {
+    User.findOne({ _id: userId }, function(err, user) {
       if(err){
         console.log('Could not find user');
       }
       console.log('this is the user:', user);
-      user[0].books.push(bookSaved._id);
+      user.books.push(savedBook._id);
       console.log('this is the new user:', user);
+
+      user.save(function (err) {
+        if(err){
+          console.log('Could not create new book: error:');
+        }
+        res.status(400);
+        res.redirect('/users/' + userId);
+      });
     });
-    //
-    // User.save(function (err) {
-    //   if(err){
-    //     console.log('Could not create new book: error:');
-    //   }
-    // });
-    res.status(400);
-    res.redirect('/users/' + userId);
 
     return;
   });
