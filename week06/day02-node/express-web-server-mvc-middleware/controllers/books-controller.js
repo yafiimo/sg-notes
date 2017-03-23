@@ -1,5 +1,5 @@
-// var User = require('../models/user-model');
 var Book = require('../models/book-model');
+var User = require('../models/user-model');
 
 // Action: new
 function newBook(req, res) {
@@ -10,32 +10,43 @@ function newBook(req, res) {
 
 // Action: create
 function createBook(req, res) {
+  var userId = req.body.userId;
   var newBook = new Book();
   newBook.title = req.body.title;
   newBook.author = req.body.author;
+  newBook.user = userId;
   console.log('newBook:', newBook);
-
-  newBook.save(function (err) {
-    var errorJson = [];
-
+  console.log('userId:', userId);
+  newBook.save(function(err, bookSaved){
     if (err) {
-      for (var path in err.errors) {
-        errorJson.push({
-          path: path,
-          message: err.errors[path].message
-        });
-        console.log('Could not create new book: error:', err.errors[path].message);
-      }
-      res.status(400).json(errorJson);
-      return;
+      console.log('could not create book: err:', err);
+      process.exit(1);
     }
+    console.log('book saved:', bookSaved);
 
-    // User.findOneAndUpdate();
+    User.find({ _id: userId }, function(err, user) {
+      if(err){
+        console.log('Could not find user');
+      }
+      console.log('this is the user:', user);
+      user[0].books.push(bookSaved._id);
+      console.log('this is the new user:', user);
+    });
+    //
+    // User.save(function (err) {
+    //   if(err){
+    //     console.log('Could not create new book: error:');
+    //   }
+    // });
+    res.status(400);
+    res.redirect('/users/' + userId);
 
-    res.redirect('/users');
+    return;
   });
-}
 
+
+
+}
 
 // Action: edit
 function editBook(req, res) {

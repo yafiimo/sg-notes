@@ -25,9 +25,7 @@ router.route('/users/:id')
 
 
 // Books
-router.route('/books')
-.post(booksController.create);
-
+router.post('/books', booksController.create);
 
 router.get('/books/new', booksController.new);
 router.get('/books/:id/edit', booksController.edit);

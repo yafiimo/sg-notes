@@ -55,9 +55,60 @@ describe('Books', function () {
         });
     });
   });
+////////////////////////////////////////////////////////////////////////////////////
 
+  describe('POST', function () {
+    it('should return error when title is blank', function (done) {
+      request
+        .post('/books')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send({ title: '', author: 'testAuthor' })
+        .end(function (err, res) {
+          var jsonResponse = JSON.parse(res.text);
 
+          res.should.have.status(400);
+          expect(jsonResponse).to.be.an('array');
+          expect(jsonResponse.length).to.equal(1);
+          expect(jsonResponse[0].path).to.equal('title');
+          done();
+        });
+    });
+    it('should return error email is blank', function (done) {
+      request
+        .post('/books')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send({ title: 'testTitle', author: '' })
+        .end(function (err, res) {
+          var jsonResponse = JSON.parse(res.text);
 
+          res.should.have.status(400);
+          expect(jsonResponse).to.be.an('array');
+          expect(jsonResponse.length).to.equal(1);
+          expect(jsonResponse[0].path).to.equal('author');
+          done();
+        });
+    });
+    it.only('should create new user when input data is valid', function (done) {
+      var testTitle = TestUtils.generateUniqueString('title');
+      var testAuthor = TestUtils.generateUniqueString('author');
+
+      request
+        .post('/books')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send({ title: testTitle, author: testAuthor })
+        .end(function (err, res) {
+          var titleRegExp = new RegExp(testTitle);
+          var authorRegExp = new RegExp(testAuthor);
+
+          res.should.have.status(200);
+          res.text.should.match(titleRegExp);
+          res.text.should.match(authorRegExp);
+          done();
+        });
+    });
+  });
+
+////////////////////////////////////////////////////////////////////////
   describe('DELETE', function () {
     it('should return error for non-existent book id', function (done) {
       request

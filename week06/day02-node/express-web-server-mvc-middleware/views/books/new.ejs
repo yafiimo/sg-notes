@@ -1,5 +1,7 @@
 <form action="/books" method="POST">
   <input type="text" name="title" placeholder="Title">
   <input type="text" name="author" placeholder="Author">
+  <input type="hidden" name="userId" value="<%= book.user %>">
+
   <button>Create</button>
 </form>

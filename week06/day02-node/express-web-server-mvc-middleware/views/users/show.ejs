@@ -22,6 +22,14 @@
       </li>
     <% } %>
   </ol>
+  <h3>New Book</h3>
+  <form action="/books" method="POST">
+    <input type="text" name="title" placeholder="Title">
+    <input type="text" name="author" placeholder="Author">
+    <input type="hidden" name="userId" value="<%= user.id %>">
+    <button>Add</button>
+  </form>
+
 <% } else { %>
   <em>User not found. Soz.</em>
 <% } %>
