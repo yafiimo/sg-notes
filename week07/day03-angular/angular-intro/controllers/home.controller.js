@@ -43,6 +43,7 @@ function HomeController() {
   controller.updateTrainer = function (index) {
     if(controller.updatedTrainerNames[index]) {
       controller.trainers.splice(index, 1, controller.updatedTrainerNames[index]);
+      controller.updatedTrainerNames = [];
     }
   };
 
