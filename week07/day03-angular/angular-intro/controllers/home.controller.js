@@ -34,13 +34,16 @@ function HomeController() {
   };
 
   controller.addTrainer = function () {
-    console.log('addTrainer: controller.newTrainerName:', controller.newTrainerName);
-    controller.trainers.push(controller.newTrainerName);
-    controller.newTrainerName = '';
+    if(controller.newTrainerName) {
+      controller.trainers.push(controller.newTrainerName);
+      controller.newTrainerName = '';
+    }
   };
 
   controller.updateTrainer = function (index) {
-    controller.trainers[index] = controller.updatedTrainerName[index];
+    if(controller.updatedTrainerNames[index]) {
+      controller.trainers.splice(index, 1, controller.updatedTrainerNames[index]);
+    }
   };
 
   controller.deleteTrainer = function (index) {
@@ -54,7 +57,7 @@ function HomeController() {
   function init() {
     console.log('inside HomeController');
     controller.newTrainerName = '';
-    controller.updatedTrainerName = [];
+    controller.updatedTrainerNames = [];
     controller.title = 'Home page';
     controller.trainers = ['Steve', 'Matt', 'Ollie', 'Niall'];
     controller.hideGonzo();

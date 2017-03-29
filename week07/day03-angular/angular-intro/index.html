@@ -23,7 +23,7 @@
   <ul>
     <li ng-repeat="trainer in home.trainers track by $index">
       {{ trainer }}
-      <input type="text" ng-model="home.updatedTrainerName[$index]" ng-value="trainer" placeholder="edit trainer's name">
+      <input type="text" ng-model="home.updatedTrainerNames[$index]" ng-value="trainer">
       <button type="button" ng-click="home.updateTrainer($index)">save name</button>
       <button type="button" ng-click="home.deleteTrainer($index)">delete trainer</button>
     </li>
