@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="simonsmithapp">
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/home-controller.js"></script>
+  <script src="/js/cats-controller.js"></script>
+  <script src="/js/frisbee-controller.js"></script>
+  <script src="/js/trucks-controller.js"></script>
+
+  <title>Simon Smith</title>
+</head>
+<body>
+
+  <nav>
+    <a ui-sref="home">Home</a>
+    <a ui-sref="cats">Cats</a>
+    <a ui-sref="frisbee">Frisbee</a>
+    <a ui-sref="trucks">Trucks</a>
+  </nav>
+
+  <section ui-view>
+  </section>
+
+</body>
+</html>
