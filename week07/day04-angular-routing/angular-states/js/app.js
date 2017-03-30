@@ -4,6 +4,11 @@ function mainRouter($stateProvider, $urlRouterProvider) {
     'home', {
       url: '/',
       templateUrl: '../states/home.html'
+    })
+  .state(
+    'about', {
+      url: '/about',
+      templateUrl: '../states/about.html'
     });
 
   $urlRouterProvider.otherwise('/');

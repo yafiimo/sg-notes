@@ -5,9 +5,11 @@
 
   <link rel="stylesheet" href="css/style.css">
 
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="js/app.js"></script>
-  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="/angular/angular.js"></script>
+  <script src="/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/controllers/home.controller.js"></script>
+  <script src="/js/controllers/about.controller.js"></script>
 
 
   <title>Angular States</title>
@@ -15,6 +17,11 @@
 <body>
 
   <h1>Angular States</h1>
+
+  <nav>
+    <a ui-sref="home">Home</a>
+    <a ui-sref="about">About</a>
+  </nav>
 
   <section ui-view>
   </section>
