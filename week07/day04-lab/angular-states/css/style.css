@@ -11,3 +11,8 @@ nav ul li {
 nav ul li a {
   padding: 10px;
 }
+
+.customClass {
+  text-align: center;
+  border: 5px solid blue
+}

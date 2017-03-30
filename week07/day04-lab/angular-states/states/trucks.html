@@ -1,1 +1,26 @@
-<h1>Trucks</h1>
+<section ng-controller="TrucksController as trucks">
+
+  <h1>Trucks</h1>
+  <div>
+    <img
+    ng-class="trucks.imageClass"
+    ng-src="{{ trucks.image1 }}"
+    alt="The first truck"
+    height="{{ trucks.imageHeight }}"
+    width="{{ trucks.imageWidth }}">
+    <img
+    ng-class="trucks.imageClass"
+    ng-src="{{ trucks.image2 }}"
+    alt="The second truck"
+    height="{{ trucks.imageHeight }}"
+    width="{{ trucks.imageWidth }}">
+    <img
+    ng-class="trucks.imageClass"
+    ng-src="{{ trucks.image3 }}"
+    alt="The third truck"
+    height="{{ trucks.imageHeight }}"
+    width="{{ trucks.imageWidth }}">
+  </div>
+
+
+</section>

@@ -1,1 +1,26 @@
-<h1>Frisbee</h1>
+<section ng-controller="FrisbeesController as frisbees">
+
+  <h1>Frisbees</h1>
+  <div>
+    <img
+    ng-class="frisbees.imageClass"
+    ng-src="{{ frisbees.image1 }}"
+    alt="The first frisbee"
+    height="{{ frisbees.imageHeight }}"
+    width="{{ frisbees.imageWidth }}">
+    <img
+    ng-class="frisbees.imageClass"
+    ng-src="{{ frisbees.image2 }}"
+    alt="The second frisbee"
+    height="{{ frisbees.imageHeight }}"
+    width="{{ frisbees.imageWidth }}">
+    <img
+    ng-class="frisbees.imageClass"
+    ng-src="{{ frisbees.image3 }}"
+    alt="The third frisbee"
+    height="{{ frisbees.imageHeight }}"
+    width="{{ frisbees.imageWidth }}">
+  </div>
+
+
+</section>

@@ -1,1 +1,26 @@
-<h1>Cats</h1>
+<section ng-controller="CatsController as cats">
+
+  <h1>Cats</h1>
+  <div>
+    <img
+    ng-class="cats.imageClass"
+    ng-src="{{ cats.image1 }}"
+    alt="The first donald trump cat"
+    height="{{cats.imageHeight}}"
+    width="{{cats.imageWidth}}">
+    <img
+    ng-class="cats.imageClass"
+    ng-src="{{ cats.image2 }}"
+    alt="The second donald trump cat"
+    height="{{ cats.imageHeight }}"
+    width="{{ cats.imageWidth }}">
+    <img
+    ng-class="cats.imageClass"
+    ng-src="{{ cats.image3 }}"
+    alt="The third donald trump cat"
+    height="{{ cats.imageHeight }}"
+    width="{{ cats.imageWidth }}">
+  </div>
+
+
+</section>
