@@ -1,0 +1,23 @@
+
+  <section ng-controller="HomeController as home">
+
+    <h2>{{home.title}}</h2>
+
+    <div>
+      <ul ng-class="todoList">
+        <li ng-repeat="todo in home.todos track by $index">
+          <strong>{{$index + 1}}:</strong> {{todo}}
+          <button type="button" ng-click="home.deleteTodos($index)">Delete</button>
+          <label><input type="checkbox" label="Completed" ng-model="" ng-click="home.deleteTodos($index); home.addToCompleted(todo)">Completed</label>
+        </li>
+      </ul>
+
+      <h2>Completed</h2>
+      <ul>
+        <li ng-repeat="completedItem in home.completed track by $index">
+          <strong>{{ completedItem }}</strong>
+        </li>
+      </ul>
+    </div>
+
+  </section>
