@@ -4,7 +4,16 @@ function MainRouter ($stateProvider, $urlRouterProvider) {
     .state('home', {
       url: '/ducks',
       templateUrl: '/states/home.html'
+    })
+    .state('new', {
+      url: '/ducks/new',
+      templateUrl: '/states/new.html'
+    })
+    .state('show', {
+      url: '/ducks/:duckId',
+      templateUrl: '/states/show.html'
     });
+
 
   $urlRouterProvider.otherwise('/ducks');
 
