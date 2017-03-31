@@ -34,33 +34,38 @@ function HomeController() {
   };
 
   controller.addTrainer = function () {
-    if(controller.newTrainerName) {
-      controller.trainers.push(controller.newTrainerName);
-      controller.newTrainerName = '';
-    }
+    controller.trainers.push(controller.newTrainerName);
+    controller.newTrainerName = '';
   };
 
   controller.updateTrainer = function (index) {
-    if(controller.updatedTrainerNames[index]) {
-      controller.trainers.splice(index, 1, controller.updatedTrainerNames[index]);
-      controller.updatedTrainerNames = [];
-    }
+    controller.trainers[index] = controller.updatedTrainerNames[index];
   };
 
   controller.deleteTrainer = function (index) {
     controller.trainers.splice(index, 1);
   };
 
+
+  controller.candisplayTrainerList = function () {
+    return controller.trainers.length > 0;
+  };
+
   controller.clearTrainerList = function () {
     controller.trainers = [];
   };
 
+  controller.isAddButtonDisabled = function() {
+    return !controller.newTrainerName;
+  };
+
+
   function init() {
     console.log('inside HomeController');
     controller.newTrainerName = '';
-    controller.updatedTrainerNames = [];
     controller.title = 'Home page';
     controller.trainers = ['Steve', 'Matt', 'Ollie', 'Niall'];
+    controller.updatedTrainerNames = controller.trainers.slice(0);
     controller.hideGonzo();
   }
 

@@ -31,5 +31,7 @@ angular
   .controller('HomeController', HomeController);
 
   /* Registers a  myFirstApp, looks in the DOM for ng-app */
+  
+  // .controller second parameter is the name of the function as given in its declaration
 ```
 ## include home.controller.js in script
