@@ -1,0 +1,11 @@
+<section ng-controller="NewController as new" ui-view>
+  <h2>{{new.title}}</h2>
+
+  <form>
+    TODOS: <input type="text" ng-model="home.newTodos">
+    <button type="submit" ng-click="home.addNewTodos()" a ui-sref="home">
+      Submit
+    </button>
+  </form>
+
+</section>
