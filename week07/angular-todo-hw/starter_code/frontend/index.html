@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="TodoApp">
+  <head>
+
+    <script src="bower_components/angular/angular.min.js" charset="utf-8"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js" charset="utf-8"></script>
+
+    <script src="js/app.js" charset="utf-8"></script>
+    <script src="js/controllers/todo.controller.js" charset="utf-8"></script>
+    <script src="js/factories/todo.factory.js" charset="utf-8"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <meta charset="utf-8">
+    <title>Todos App</title>
+  </head>
+  <body>
+
+  <nav>
+    <ul>
+      <li><a ui-sref="home">Home</a></li>
+      <li><a ui-sref="new">New Todo</a></li>
+    </ul>
+  </nav>
+
+
+  <section ng-controller="TodoController as todo" ui-view>
+    hello
+  </section>
+  </body>
+</html>

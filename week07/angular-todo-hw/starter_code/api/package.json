@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "start": "nodemon app.js",
-    "seed" : "node config/seed.js"
+    "seed": "node config/seed.js"
   },
   "dependencies": {
     "body-parser": "^1.13.2",
@@ -15,5 +15,8 @@
     "mongoose": "^4.0.7",
     "morgan": "~1.6.1"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
 }

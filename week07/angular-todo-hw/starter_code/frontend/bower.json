@@ -1,0 +1,17 @@
+{
+  "name": "frontend",
+  "homepage": "https://github.com/yafiimo/sg-notes",
+  "authors": [
+    "Mohammed Yafii <myafii@spartaglobal.co>"
+  ],
+  "description": "todos-hw",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
