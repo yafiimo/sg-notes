@@ -12,6 +12,10 @@ function MainRouter ($stateProvider, $urlRouterProvider) {
     .state('show', {
       url: '/ducks/:duckId',
       templateUrl: '/states/show.html'
+    })
+    .state('edit', {
+      url: '/ducks/:duckId/edit',
+      templateUrl: '/states/edit.html'
     });
 
 

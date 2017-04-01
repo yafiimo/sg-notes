@@ -10,7 +10,7 @@ function mainRouter($stateProvider, $urlRouterProvider) {
       templateUrl: '../states/new.html'
     });
 
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/todos');
 }
 
 angular
