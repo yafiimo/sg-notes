@@ -1,4 +1,4 @@
-function TodoFactory(API_URL, $http) {
+function TodoFactory (API_URL, $http) {
   return {
     getAll: function() {
       return $http({
@@ -23,6 +23,13 @@ function TodoFactory(API_URL, $http) {
       return $http({
         method: 'DELETE',
         url: `${API_URL}/todos/${todoId}`
+      });
+    },
+    editOne: function(editedTodo) {
+      return $http({
+        method: 'PATCH',
+        url: `${API_URL}/todos/${editedTodo._id}`,
+        data: editedTodo
       });
     }
   };

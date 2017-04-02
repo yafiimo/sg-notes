@@ -1,36 +1,40 @@
-function TodoController($state, $stateParams, TodoFactory) {
+function TodoController ($stateParams, $state,TodoFactory) {
   var controller = this;
 
-  controller.getTodo = function() {
+  controller.getTodo = function(){
+     // $stateParams is like req.params - it finds the thing after the colon eg todo factory line 15
     var todoId = $stateParams.todoId;
 
     TodoFactory.getOne(todoId).then(
-      function success(response) {
-        controller.selectedTodo = response.data;
-        console.log('Got todo:', response);
-      },
-      function error(error) {
-        console.warn('Error getting todo:', error);
-      }
-    );
+       function success(response) {
+         controller.selectedTodo = response.data;
+         console.log('todo:',response.data);
+       },
+       function error(error) {
+         console.warn('Error getting todo:',error);
+       }
+     );
   };
 
   controller.addTodo = function() {
+    console.log('addTodo()');
     TodoFactory.createOne(controller.newTodo).then(
-      function success(response) {
-        console.log('Created new todo:', response);
+      function sucess(response) {
+        console.log('Created new duck:', response);
         $state.go('home');
       },
       function error(error) {
-        console.warn('Error adding new todo:', error);
+        console.warn('Error creating todo:', error);
       }
     );
   };
 
   controller.deleteTodo = function(todoId) {
+    console.log('deleteTodo(todoId)');
     TodoFactory.deleteOne(todoId).then(
-      function success(response) {
-        console.log('Deleted todo:', response);
+      function sucess(response) {
+        console.log('deleted:', response);
+        $state.go('home');
       },
       function error(error) {
         console.warn('Error deleting todo:', error);
@@ -38,22 +42,38 @@ function TodoController($state, $stateParams, TodoFactory) {
     );
   };
 
+  controller.editTodo = function (todoId) {
+    $state.go('edit', { todoId: todoId });
+  };
+
+  controller.updateTodo = function () {
+    TodoFactory.editOne(controller.selectedTodo.todo).then(
+        function success(response) {
+          console.log('todo updated:', response);
+        },
+        function error(error) {
+          console.warn('Error updating todo:', error);
+        }
+      );
+  };
+
+
+
   function init() {
-    controller.title = 'Todo List';
+    console.log(controller);
     controller.selectedTodo = undefined;
     controller.allTodos = [];
     controller.newTodo = {};
-
     TodoFactory.getAll().then(
-      function success(response) {
+      function sucess(response) {
         controller.allTodos = response.data;
       },
-      function error(error) {
-        console.warn('Error getting todo-list:', error);
-      }
-    );
-  }
+        function error(error) {
+          console.warn('Error getting list items', error);
+        }
 
+      );
+  }
   init();
 }
 

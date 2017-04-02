@@ -1,1 +1,31 @@
 <h2>Edit Todo</h2>
+
+<section ng-init="todo.getTodo()">
+
+  <form ng-submit="todo.updateTodo()">
+
+    <div>
+      <label for="new-todo-title">Title:</label>
+      <input
+        type="text"
+        id="new-todo-title"
+        placeholder="todo title"
+        ng-model="todo.selectedTodo.todo.title">
+    </div>
+
+    <div>
+      <label for="new-todo-descripton">Description:</label>
+      <input
+        type="text"
+        id="new-todo-description"
+        placeholder="edit description"
+        ng-model="todo.selectedTodo.todo.desc">
+    </div>
+
+    <div>
+    <input type="submit" value="Update">
+    </div>
+
+  </form>
+
+</section>

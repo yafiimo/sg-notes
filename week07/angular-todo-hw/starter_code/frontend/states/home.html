@@ -3,6 +3,8 @@
 <ul>
   <li ng-repeat="item in todo.allTodos">
     <a ui-sref="show({todoId: item._id})">{{ item.title }}</a>
+    <button type="button" ng-click="todo.editTodo(item._id)">Edit</button>
     <button type="button" ng-click="todo.deleteTodo(item._id)">Delete</button>
+    <label><input type="checkbox">Completed</label>
   </li>
 </ul>

@@ -14,7 +14,7 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     })
     .state('edit', {
       url: '/todos/:todoId/edit',
-      templateUrl: '/states/home.html'
+      templateUrl: '/states/edit.html'
     });
 
 
