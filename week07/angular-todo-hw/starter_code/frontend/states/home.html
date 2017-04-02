@@ -2,8 +2,7 @@
 
 <ul>
   <li ng-repeat="item in todo.allTodos">
-
-    {{ item.title }}
-    {{ item.desc }}
+    <a ui-sref="show({todoId: item._id})">{{ item.title }}</a>
+    <button type="button" ng-click="todo.deleteTodo(item._id)">Delete</button>
   </li>
 </ul>

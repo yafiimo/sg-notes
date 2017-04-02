@@ -26,6 +26,17 @@ function getTodo(request, response) {
   }).select('-__v');
 }
 
+// DELETE
+
+function deleteTodo(request, response) {
+  var id = request.params.id;
+
+  Todo.deleteOne({ _id: id }, function (error, todo) {
+    if (error) return response.json(error);
+    response.json({todo: todo});
+  }).select('-__v');
+}
+
 //UPDATE
 
 function updateTodo(request, response) {
@@ -51,4 +62,5 @@ module.exports = {
   createTodo: createTodo,
   getTodo: getTodo,
   updateTodo: updateTodo,
+  deleteTodo: deleteTodo
 }

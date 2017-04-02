@@ -9,10 +9,11 @@ function MainRouter($stateProvider, $urlRouterProvider) {
       templateUrl: '/states/new.html'
     })
     .state('show', {
-      url: 'todos/:id'
+      url: '/todos/:todoId',
+      templateUrl: '/states/show.html'
     })
     .state('edit', {
-      url: '/todos/:id/edit',
+      url: '/todos/:todoId/edit',
       templateUrl: '/states/home.html'
     });
 

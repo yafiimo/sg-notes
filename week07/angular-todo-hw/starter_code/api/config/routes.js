@@ -9,7 +9,8 @@ router.route('/todos')
 
 router.route('/todos/:id')
   .get(todoController.getTodo)
-  .patch(todoController.updateTodo);
+  .patch(todoController.updateTodo)
+  .delete(todoController.deleteTodo);
 
 
 module.exports = router

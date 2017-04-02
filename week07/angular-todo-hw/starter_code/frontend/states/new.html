@@ -1,1 +1,27 @@
 <h2>Add New Todo</h2>
+
+<form ng-submit="todo.addTodo()">
+
+  <div>
+    <label for="new-todo-title">Title:</label>
+    <input
+      type="text"
+      id="new-todo-title"
+      placeholder="Todo title"
+      ng-model="todo.newTodo.title">
+  </div>
+
+  <div>
+    <label for="new-todo-desc">Description:</label>
+    <input
+      type="text"
+      id="new-todo-desc"
+      placeholder="Describe new todo"
+      ng-model="todo.newTodo.desc">
+  </div>
+
+  <div>
+    <input type="submit" value="Add Todo">
+  </div>
+
+</form>

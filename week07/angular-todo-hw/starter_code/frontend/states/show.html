@@ -1,1 +1,8 @@
-<h2>Show Todo</h2>
+<h2>Show Todos</h2>
+
+<section ng-init="todo.getTodo()">
+  <ul>
+    <strong><li>{{ todo.selectedTodo.todo.title }}</li></strong>
+    <li> {{ todo.selectedTodo.todo.desc }}</li>
+  </ul>
+</section>
