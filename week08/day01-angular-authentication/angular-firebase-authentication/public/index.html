@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <title>AngularFire Authentication</title>
+
+  <!-- CDNs -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+  <script src="//www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+  <script src="//cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+
+  <!-- JS FILES -->
+  <script src="js/app.js"></script>
+  <script src="js/factories/auth.factory.js"></script>
+  <script src="js/controllers/auth.controller.js"></script>
+  <script src="js/controllers/secrets.controller.js"></script>
+
+</head>
+
+<body ng-controller="AuthController as auth">
+
+  <nav class="headerElement">
+    <h1>Sparta Secrets</h1>
+    <a ui-sref="home">Home</a>
+    <a ui-sref="secret">View Secrets</a>
+  </nav>
+
+  <section class="userWidget headerElement">
+    <div ng-if="auth.user">
+      <p><strong>
+        Welcome {{ auth.user.email }}! Remember to keep our secrets a secret!
+      </strong></p>
+      <p>
+        <a href="#" ng-click="auth.signOut()">Sign out</a>
+      </p>
+    </div>
+
+    <div ng-if="!auth.user">
+      <p>Welcome new person!!</p>
+
+      <a ui-sref="login">Click Here</a> to sign in.
+      <br>
+      <a ui-sref="signup">Click Here</a> to register and see our secrets!
+    </div>
+  </section>
+
+  <section class="mainContainer" ui-view>
+    <!-- states get rendered here  -->
+  </section>
+
+</body>
+</html>
