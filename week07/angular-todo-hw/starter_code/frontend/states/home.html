@@ -1,10 +1,19 @@
 <h2>Todos</h2>
 
-<ul>
-  <li ng-repeat="item in todo.allTodos">
+<h3>Incomplete</h3>
+<ol>
+  <li ng-repeat="item in todo.allTodos | completeStatus:false">
+    <input type="checkbox" ng-click="todo.updateTodoCompleteStatus(item._id, true)">
     <a ui-sref="show({todoId: item._id})">{{ item.title }}</a>
     <button type="button" ng-click="todo.editTodo(item._id)">Edit</button>
     <button type="button" ng-click="todo.deleteTodo(item._id)">Delete</button>
-    <label><input type="checkbox">Completed</label>
   </li>
-</ul>
+</ol>
+
+<h3>Complete</h3>
+<ol>
+  <li ng-repeat="item in todo.allTodos | completeStatus:true">
+    <input type="checkbox" ng-click="todo.updateTodoCompleteStatus(item._id, false)">
+    <a ui-sref="show({todoId: item._id})">{{ item.title }}</a>
+  </li>
+</ol>

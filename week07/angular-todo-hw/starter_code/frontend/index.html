@@ -2,10 +2,12 @@
 <html lang="en" ng-app="TodoApp">
   <head>
 
+    <link href="http://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet" type="text/css">
     <script src="bower_components/angular/angular.min.js" charset="utf-8"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js" charset="utf-8"></script>
 
     <script src="js/app.js" charset="utf-8"></script>
+    <script src="js/filters/complete-status.filter.js" charset="utf-8"></script>
     <script src="js/controllers/todo.controller.js" charset="utf-8"></script>
     <script src="js/factories/todo.factory.js" charset="utf-8"></script>
 
@@ -24,7 +26,7 @@
 
 
   <section ng-controller="TodoController as todo" ui-view>
-    
+
   </section>
   </body>
 </html>
