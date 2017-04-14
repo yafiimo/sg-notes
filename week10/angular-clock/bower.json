@@ -1,0 +1,20 @@
+{
+  "name": "angular-clock",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Mohammed Yafii"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/yafiimo/sg-notes",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.4"
+  }
+}
