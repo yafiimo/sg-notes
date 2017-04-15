@@ -15,7 +15,7 @@
 <body ng-controller="ClockController as clock">
 
   <div class="clock-face">
-    <p>Date = {{ clock.date | date : "mediumTime" : "+0100" }}</p>
+    <p>{{ clock.date | date : "mediumTime" : "+0100" }}</p>
   </div>
 
 </body>
