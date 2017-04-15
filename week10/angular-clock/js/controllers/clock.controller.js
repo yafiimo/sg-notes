@@ -1,10 +1,17 @@
-function ClockController() {
+function ClockController($timeout) {
   var controller = this;
 
+  controller.tick = function() {
+    controller.date = new Date();
+    $timeout(controller.tick, controller.tickInterval);
+  };
+
   function init() {
-    controller.clockName = 'Mo\'s Clock';
-    controller.arrayTest = [1,2,3,4,5,6,7];
+    controller.tickInterval = 1000;
   }
+
+  $timeout(controller.tick, controller.tickInteval);
+
 
   init();
 }

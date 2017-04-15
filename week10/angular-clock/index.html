@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="AngularClock">
 <head>
-  <script src="angular/angular.min.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="node_modules/angular/angular.min.js" charset="utf-8"></script>
   <script src="js/app.js" charset="utf-8"></script>
   <script src="js/controllers/clock.controller.js" charset="utf-8"></script>
 
@@ -12,6 +14,9 @@
 
 <body ng-controller="ClockController as clock">
 
+  <div class="clock-face">
+    <p>Date = {{ clock.date | date : "mediumTime" : "+0100" }}</p>
+  </div>
 
 </body>
 
