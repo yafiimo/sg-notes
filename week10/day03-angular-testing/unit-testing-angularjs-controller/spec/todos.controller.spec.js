@@ -40,4 +40,37 @@ describe('TodosController', () => {
     });
   });
 
+  describe('clear()', () => {
+    it('should call TodosFactory.clear()', () => {
+      controllerToTest.clear();
+      expect(MockTodosFactory.clear).toHaveBeenCalled();
+    });
+  });
+
+  describe('isSubmitButtonDisabled()', () => {
+    it('should return false if there is an input text', () => {
+      const inputText = 'new todo';
+      controllerToTest.inputText = inputText;
+      expect(controllerToTest.isSubmitButtonDisabled()).toEqual(false);
+    });
+    it('should return true if there is no input text', () => {
+      const inputText = '';
+      controllerToTest.inputText = inputText;
+      expect(controllerToTest.isSubmitButtonDisabled()).toEqual(true);
+    });
+  });
+
+  describe('isClearButtonDisabled()', () => {
+    it('should return true if todo list is empty', () => {
+      const list = [];
+      controllerToTest.list = list;
+      expect(controllerToTest.isClearButtonDisabled()).toEqual(true);
+    });
+    it('should return false if todo list is not empty', () => {
+      const list = ['test todo 1', 'test todo 2'];
+      controllerToTest.list = list;
+      expect(controllerToTest.isClearButtonDisabled()).toEqual(false);
+    });
+  });
+
 });
