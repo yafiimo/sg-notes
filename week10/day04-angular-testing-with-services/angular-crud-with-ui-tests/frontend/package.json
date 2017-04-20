@@ -4,7 +4,7 @@
   "description": "Front end code base for Ducks app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "karma start"
   },
   "author": "Mohammed Yafii",
   "license": "ISC",
