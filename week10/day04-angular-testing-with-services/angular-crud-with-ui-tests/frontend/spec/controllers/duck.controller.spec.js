@@ -37,4 +37,12 @@ describe('DuckController', () => {
     });
   });
 
+  describe('editDuck()', () => {
+    it('should go to "edit" state with specified duckId', () => {
+      const testDuckId = 'quark';
+      controllerToTest.editDuck(testDuckId);
+      expect(mock$state.go).toHaveBeenCalledWith('edit', { duckId: testDuckId } );
+    });
+  });
+
 });
