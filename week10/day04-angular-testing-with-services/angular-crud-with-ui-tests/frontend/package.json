@@ -1,0 +1,23 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "Front end code base for Ducks app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mohammed Yafii",
+  "license": "ISC",
+  "devDependencies": {
+    "angular-mocks": "^1.6.4",
+    "jasmine": "^2.5.3",
+    "karma": "^1.6.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-spec-reporter": "0.0.31"
+  },
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-ui-router": "^0.4.2"
+  }
+}
