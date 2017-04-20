@@ -51,12 +51,12 @@ describe('TodosController', () => {
     it('should return false if there is an input text', () => {
       const inputText = 'new todo';
       controllerToTest.inputText = inputText;
-      expect(controllerToTest.isSubmitButtonDisabled()).toEqual(false);
+      expect(controllerToTest.isSubmitButtonDisabled()).toBe(false);
     });
     it('should return true if there is no input text', () => {
       const inputText = '';
       controllerToTest.inputText = inputText;
-      expect(controllerToTest.isSubmitButtonDisabled()).toEqual(true);
+      expect(controllerToTest.isSubmitButtonDisabled()).toBe(true);
     });
   });
 
@@ -64,12 +64,12 @@ describe('TodosController', () => {
     it('should return true if todo list is empty', () => {
       const list = [];
       controllerToTest.list = list;
-      expect(controllerToTest.isClearButtonDisabled()).toEqual(true);
+      expect(controllerToTest.isClearButtonDisabled()).toBe(true);
     });
     it('should return false if todo list is not empty', () => {
       const list = ['test todo 1', 'test todo 2'];
       controllerToTest.list = list;
-      expect(controllerToTest.isClearButtonDisabled()).toEqual(false);
+      expect(controllerToTest.isClearButtonDisabled()).toBe(false);
     });
   });
 
