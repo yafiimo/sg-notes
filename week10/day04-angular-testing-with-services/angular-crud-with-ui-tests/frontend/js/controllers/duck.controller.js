@@ -54,13 +54,13 @@ function DuckController($state, $stateParams, DuckFactory) {
   };
 
   function init() {
-    console.log(controller);
     controller.selectedDuck = undefined;
     controller.allDucks = [];
     controller.newDuck = {};
     controller.colors = ['red', 'green', 'blue'];
     DuckFactory.getAll().then(
       (response) => {
+        console.log('all ducks:', response.data);
         controller.allDucks = response.data;
       },
       (error) => {
@@ -71,6 +71,7 @@ function DuckController($state, $stateParams, DuckFactory) {
 
   init();
 }
+DuckController.$inject = ['$state', '$stateParams', 'DuckFactory'];
 
 angular
   .module('DuckApp')
