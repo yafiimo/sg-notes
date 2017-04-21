@@ -64,4 +64,4 @@ module.exports = {
   getDuck: getDuck,
   updateDuck: updateDuck,
   removeDuck: removeDuck
-}
+};
