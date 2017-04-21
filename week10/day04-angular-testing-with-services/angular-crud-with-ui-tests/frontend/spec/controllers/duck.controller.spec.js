@@ -43,35 +43,37 @@ describe('DuckController', () => {
   });
 
 
+  xdescribe('getDuck()', () => {
+    it('should get duck with specified duckId', () => {
 
-
-
-
-
-  xdescribe('addDuck()', () => {
-    it('Should add new duck', () => {
-      const testNewDuck = {
-        name: 'testNewDuck',
-        _id: testDuckId
-      };
-      // controllerToTest.newDuck = testNewDuck;
-      httpBackend
-        .expect('POST', `${API_URL}/ducks`)
-        .respond(testNewDuck);
-      controllerToTest.addDuck();
-      httpBackend.flush();
-      // expect(controllerToTest.allDucks).toContain(testNewDuck);
-      httpBackend.verifyNoOutstandingExpectation();
     });
   });
 
 
+  describe('addDuck()', () => {
+    it('Should add new duck', () => {
+      const testDuckToAdd = {
+        name: 'Daisy'
+      };
 
+      httpBackend
+        .expect('POST', `${API_URL}/ducks`, testDuckToAdd)
+        .respond({});
+      controllerToTest.newDuck = testDuckToAdd;
+      controllerToTest.addDuck();
+      httpBackend.flush();
+    });
 
+    it('should go to "home" state on success', () => {
+      httpBackend
+        .when('POST', `${API_URL}/ducks`)
+        .respond({});
+      controllerToTest.addDuck();
+      httpBackend.flush();
+      expect(mock$state.go).toHaveBeenCalledWith('home');
+    });
 
-
-
-
+  });
 
   describe('deleteDuck()', () => {
     it('Should make API call to delete specified duck', () => {
@@ -85,15 +87,6 @@ describe('DuckController', () => {
     });
   });
 
-
-
-
-
-
-
-
-
-
   describe('editDuck()', () => {
     it('should go to "edit" state with specified duckId', () => {
       controllerToTest.editDuck(testDuckId);
@@ -101,27 +94,19 @@ describe('DuckController', () => {
     });
   });
 
-
-
-
-
-
-
-
-  fdescribe('updateDuck()', () => {
-    it('should updateDuck with correct data', () => {
-      const testEditedDuck = {
-        duck: {
-          name: 'testEditedDuck',
-          _id: testDuckId
-        }
+  describe('updateDuck()', () => {
+    it('should make API call to update duck with correct data', () => {
+      const testUpdatedDuck = {
+        _id: testDuckId
       };
-      controllerToTest.selectedDuck = testEditedDuck;
-      controllerToTest.updateDuck();
 
       httpBackend
-        .expect('PATCH', `${API_URL}/ducks/${testDuckId}`, { data: testEditedDuck })
-        .respond(testEditedDuck);
+        .expect('PATCH', `${API_URL}/ducks/${testDuckId}`, testUpdatedDuck)
+        .respond({});
+      controllerToTest.selectedDuck = {
+        duck: testUpdatedDuck
+      };
+      controllerToTest.updateDuck();
       httpBackend.flush();
       httpBackend.verifyNoOutstandingExpectation();
     });
